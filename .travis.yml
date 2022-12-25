@@ -1,0 +1,17 @@
+dist: trusty
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t journalapp .
+      - docker images
+      - docker tag journalapp $DOCKER_USERNAME/journalapp
+      - docker push $DOCKER_USERNAME/journalapp
+      
+    - stage: test
+      script:
+      - docker run $DOCKER_USERNAME/journalapp echo "This is a sample text" > hello.txt
+      - cat hello.txt
+      - docker ps -a 
