@@ -14,4 +14,4 @@ jobs:
       script:
       - docker run $DOCKER_USERNAME/journalnodejs echo "This is a sample text" > hello.txt
       - cat hello.txt
-      - docker ps -a 
+      - docker ps -a
