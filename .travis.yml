@@ -5,13 +5,13 @@ jobs:
     - stage: build docker image
       script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t journalapp .
+      - docker build -t journalnodejs .
       - docker images
-      - docker tag journalapp $DOCKER_USERNAME/journalapp
-      - docker push $DOCKER_USERNAME/journalapp
+      - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs
+      - docker push $DOCKER_USERNAME/journalnodejs
       
     - stage: test
       script:
-      - docker run $DOCKER_USERNAME/journalapp echo "This is a sample text" > hello.txt
+      - docker run $DOCKER_USERNAME/journalnodejs echo "This is a sample text" > hello.txt
       - cat hello.txt
       - docker ps -a 
