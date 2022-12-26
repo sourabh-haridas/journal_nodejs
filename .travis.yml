@@ -1,5 +1,9 @@
 dist: trusty
 
+env:
+ global:
+   -SHA = $(git rev-parse HEAD)
+   
 jobs:
   include:
     - stage: build docker image
@@ -7,8 +11,8 @@ jobs:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - docker build -t journalnodejs .
       - docker images
-      - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs:v2
-      - docker push $DOCKER_USERNAME/journalnodejs:v2
+      - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs:${SHA}
+      - docker push $DOCKER_USERNAME/journalnodejs:${SHA}
       
     - stage: test
       script:
