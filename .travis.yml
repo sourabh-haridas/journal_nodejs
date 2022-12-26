@@ -8,7 +8,7 @@ jobs:
       - docker build -t journalnodejs .
       - docker images
       - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs:v1
-      - docker push $DOCKER_USERNAME/journalnodejs
+      - docker push $DOCKER_USERNAME/journalnodejs:v1
       
     - stage: test
       script:
