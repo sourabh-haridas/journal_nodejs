@@ -10,7 +10,6 @@ jobs:
       - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs:v1
       - docker push $DOCKER_USERNAME/journalnodejs:v1
       
-      
     - stage: test
       script:
       - docker run $DOCKER_USERNAME/journalnodejs echo "This is a sample text" > hello.txt
