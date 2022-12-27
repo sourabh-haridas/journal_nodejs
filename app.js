@@ -19,7 +19,16 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://admin:test1234@mongodb-svc.sourabh-poc.svc.cluster.local:27017/dailyJournalDB");
+mongoose.connect( "mongodb://admin:test1234@mongodb-svc.sourabh-poc.svc.cluster.local:27017/dailyJournalDB",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    if (!err) {
+      console.log("MongoDB Connection Succeeded.");
+    } else {
+      console.log("Error in DB connection : " + err);
+    }
+  }
+);
 
 const postSchema = new mongoose.Schema({
   title: {
