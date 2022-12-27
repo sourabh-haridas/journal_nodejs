@@ -18,6 +18,6 @@ jobs:
       - sudo -E env "PATH=$PATH" cp oc /usr/bin
       - sudo -E env "PATH=$PATH" chmod a+x /usr/bin/oc
       - sudo -E env "PATH=$PATH" chmod a+x /bin/oc
-      - oc login --token="$OC_TOKEN" --server ="$OC_SERVER" 
-      - oc project "$PROJECT"
+      - oc login --token="$OC_TOKEN" --server="$OC_SERVER" 
+      - oc project "$PROJECT_NAME"
       - oc apply -f nodejs.yaml
