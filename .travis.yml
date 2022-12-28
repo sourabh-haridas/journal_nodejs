@@ -22,16 +22,12 @@ jobs:
        - git add .
        - git commit -m 'done by travis node-app-update-deployment-pipeline'
        - git push https://$user:$encodedPass@github.com/$user/journal_nodejs.git HEAD:main
-       
-       
-    - stage: openshift cluster
-      script:
-      - wget https://mirror.openshift.com/pub/openshift-v4/amd64/clients/oc-dec2/4.6/linux/oc.tar.gz
-      - tar -xzf oc.tar.gz
-      - sudo -E env "PATH=$PATH" cp oc /bin
-      - sudo -E env "PATH=$PATH" cp oc /usr/bin
-      - sudo -E env "PATH=$PATH" chmod a+x /usr/bin/oc
-      - sudo -E env "PATH=$PATH" chmod a+x /bin/oc
-      - oc login --token="$OC_TOKEN" --server="$OC_SERVER" 
-      - oc project "$PROJECT_NAME"
-      - oc apply -f nodejs.yaml
+       - wget https://mirror.openshift.com/pub/openshift-v4/amd64/clients/oc-dec2/4.6/linux/oc.tar.gz
+       - tar -xzf oc.tar.gz
+       - sudo -E env "PATH=$PATH" cp oc /bin
+       - sudo -E env "PATH=$PATH" cp oc /usr/bin
+       - sudo -E env "PATH=$PATH" chmod a+x /usr/bin/oc
+       - sudo -E env "PATH=$PATH" chmod a+x /bin/oc
+       - oc login --token="$OC_TOKEN" --server="$OC_SERVER" 
+       - oc project "$PROJECT_NAME"
+       - oc apply -f nodejs.yaml
