@@ -12,16 +12,16 @@ jobs:
           
     - stage: replace the tag name 
       script:
-       - git config user.email sourabh.h51@gmail.com
-       - git config user.name sourabh1500
-       - git clone https://$user:$encodedPass@github.com/$user/journal_nodejs.git
-       - cat nodejs.yaml
-       - echo $TRAVIS_BUILD_NUMBER
-       - sed -i 's/latest/"$TRAVIS_BUILD_NUMBER"/g' ./nodejs.yaml
-       - cat nodejs.yaml
-       - git add .
-       - git commit -m 'done by travis node-app-update-deployment-pipeline'
-       - git push https://$user:$encodedPass@github.com/$user/journal_nodejs.git HEAD:main
+#        - git config user.email sourabh.h51@gmail.com
+#        - git config user.name sourabh1500
+#        - git clone https://$user:$encodedPass@github.com/$user/journal_nodejs.git
+#        - cat nodejs.yaml
+#        - echo $TRAVIS_BUILD_NUMBER
+#        - sed -i 's/latest/"$TRAVIS_BUILD_NUMBER"/g' ./nodejs.yaml
+#        - cat nodejs.yaml
+#        - git add .
+#        - git commit -m 'done by travis node-app-update-deployment-pipeline'
+#        - git push https://$user:$encodedPass@github.com/$user/journal_nodejs.git HEAD:main
        - wget https://mirror.openshift.com/pub/openshift-v4/amd64/clients/oc-dec2/4.6/linux/oc.tar.gz
        - tar -xzf oc.tar.gz
        - sudo -E env "PATH=$PATH" cp oc /bin
