@@ -23,11 +23,11 @@ jobs:
       - oc apply -f nodejs.yaml
 
        - git config user.email sourabh.h51@gmail.com
-       -  git config user.name sourabh1500
-       - cat ./nodejs.yaml
+       - git config user.name sourabh1500
+       - cat nodejs.yaml
        - echo $TRAVIS_BUILD_NUMBER
        - sed -i 's+ $DOCKER_USERNAME/journalnodejs.*+$DOCKER_USERNAME/journalnodejs:${TRAVIS_BUILD_NUMBER}+g' ./nodejs.yaml
-       - cat ./nodejs.yaml"
+       - cat nodejs.yaml
        - git add .
        - git commit -m 'done by jenkins job node-app-update-deployment-pipeline'
        - git push https://$user:$encodedPass@github.com/$user/journal_nodejs.git HEAD:main
