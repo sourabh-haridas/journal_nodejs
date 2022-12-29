@@ -20,4 +20,5 @@ jobs:
        - sudo -E env "PATH=$PATH" chmod a+x /bin/oc
        - oc login --token="$OC_TOKEN" --server="$OC_SERVER" 
        - oc project "$PROJECT_NAME"
-       - oc apply -f nodejs.yaml
+       -	envsubst < deployment.yaml.template > deployment.yaml
+       - oc apply -f deployment.yaml
