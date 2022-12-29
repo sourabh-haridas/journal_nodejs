@@ -17,7 +17,7 @@ jobs:
        - git clone https://$user:$encodedPass@github.com/$user/journal_nodejs.git
        - cat nodejs.yaml
        - echo $TRAVIS_BUILD_NUMBER
-       - sed -i 's/latest/$TRAVIS_BUILD_NUMBER/g' ./nodejs.yaml
+       - sed -i 's/latest/'"$TRAVIS_BUILD_NUMBER"'/g' ./nodejs.yaml
 #        - sed -i 's+$DOCKER_USERNAME/journalnodejs:.*+$DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_NUMBER"+g'
        - cat nodejs.yaml
        - git add .
