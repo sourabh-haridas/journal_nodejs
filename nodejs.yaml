@@ -14,7 +14,7 @@ spec:
     app: nodejs-app
   spec:
    containers:
-   - image: docker.io/sourabh51/journalnodejs:109
+   - image: docker.io/sourabh51/journalnodejs:111
      name: nodejs-api
      imagePullPolicy: Always
      ports:
