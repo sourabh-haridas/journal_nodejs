@@ -7,8 +7,7 @@ jobs:
           --password-stdin
         - docker build -t journalnodejs .
         - docker images
-        - docker tag journalnodejs
-          $DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_ID"
+        - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_ID"
         - docker push $DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_ID"
     - stage: trigger downstream
       script:
