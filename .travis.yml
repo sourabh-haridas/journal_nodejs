@@ -20,5 +20,13 @@ jobs:
        - sudo -E env "PATH=$PATH" chmod a+x /bin/oc
        - oc login --token="$OC_TOKEN" --server="$OC_SERVER" 
        - oc project "$PROJECT_NAME"
+       - git config user.email sourabh.h51@gmail.com
+       - git config user.name sourabh1500
+       - git clone https://$user:$encodedPass@github.com/$user/journal_nodejs_cd.git
+       - echo $TRAVIS_BUILD_NUMBER
        - envsubst < deployment.yaml.template > deployment.yaml
        - oc apply -f deployment.yaml
+       - cat deployment.yaml
+       - git add .
+       - git commit -m 'done by travis node-app-update-deployment-pipeline'
+       - git push https://$user:$encodedPass@github.com/$user/journal_nodejs_cd.git HEAD:main
