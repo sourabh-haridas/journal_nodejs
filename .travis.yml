@@ -3,8 +3,7 @@ jobs:
   include:
     - stage: build docker image
       script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME"
-          --password-stdin
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t journalnodejs .
         - docker images
         - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_ID"
