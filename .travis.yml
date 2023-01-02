@@ -11,7 +11,7 @@ jobs:
       - docker push $DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_ID"
       
     - stage: trigger downstream
-      script: |
+      script:
         echo "TRAVIS_BRANCH=$TRAVIS_BRANCH TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST"
         if [[ ($TRAVIS_BRANCH == master) &&
               ($TRAVIS_PULL_REQUEST == false) ]] ; then
@@ -19,4 +19,4 @@ jobs:
           sh trigger-travis.sh OTHERGITHUBID OTHERGITHUBPROJECT $TRAVIS_ACCESS_TOKEN
         else
 	  echo "trigger-travis.sh did not run"
-        fi
+        
