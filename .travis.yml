@@ -8,10 +8,15 @@ jobs:
         - docker images
         - docker tag journalnodejs $DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_ID"
         - docker push $DOCKER_USERNAME/journalnodejs:"$TRAVIS_BUILD_ID"
-    - stage: trigger downstream
+    - stage: openshift cluster 
       script:
-#         - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-#         - if: [[ ($TRAVIS_BRANCH == master) && ($TRAVIS_PULL_REQUEST == false) ]]
-          curl -LO --retry 3 https://raw.githubusercontent.com/plume-lib/trigger-travis/master/trigger-travis.sh
-          sh trigger-travis.sh sourabh1500 journal_nodejs_cd $TRAVIS_ACCESS_TOKEN
-#         - else echo "trigger-travis.sh did not run"
+       - wget https://mirror.openshift.com/pub/openshift-v4/amd64/clients/oc-dec2/4.6/linux/oc.tar.gz
+       - tar -xzf oc.tar.gz
+       - sudo -E env "PATH=$PATH" cp oc /bin
+       - sudo -E env "PATH=$PATH" cp oc /usr/bin
+       - sudo -E env "PATH=$PATH" chmod a+x /usr/bin/oc
+       - sudo -E env "PATH=$PATH" chmod a+x /bin/oc
+       - oc login --token="$OC_TOKEN" --server="$OC_SERVER" 
+       - oc project "$PROJECT_NAME"
+       - envsubst < deployment.yaml.template > deployment.yaml
+       - oc apply -f deployment.yaml
